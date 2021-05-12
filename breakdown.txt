@@ -1,0 +1,20 @@
+A tic tac table game has the following functions 
+
+* Designate which player is using which symbol/value
+* Take user input
+* if grid position is empty add value
+* if not reject and ask them to add it again
+* Check if row,column or diagonal axis is filled with one value then that value player wins
+* else if not the game is either ongoing 
+* if all the cells are full or winning columns,rows,diagonals are mixed it is a tie
+
+
+CLASSES
+_______
+
+* Board class - returns valuues in grid and adds value to grid
+* Set class - contains and checks combinations in grid
+* Input class - has all user relted interactions
+
+* Use global variables to access them in all the classes you need 
+* 
