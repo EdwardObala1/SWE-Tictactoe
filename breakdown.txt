@@ -13,8 +13,4 @@ CLASSES
 _______
 
 * Board class - returns valuues in grid and adds value to grid
-* Set class - contains and checks combinations in grid
-* Input class - has all user relted interactions
-
-* Use global variables to access them in all the classes you need 
-* 
+* Userinterface - Gets the user to be able to interact via interface
