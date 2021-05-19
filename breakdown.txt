@@ -14,3 +14,6 @@ _______
 
 * Board class - returns valuues in grid and adds value to grid
 * Userinterface - Gets the user to be able to interact via interface
+
+to keep turns I would just use even number and such just compute plus one into the 
+turns and one group gets even number and the other one gets odd numbers
