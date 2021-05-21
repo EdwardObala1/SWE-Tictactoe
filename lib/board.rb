@@ -1,13 +1,11 @@
 require 'set'
 class Board
-  attr_reader :grid, :row, :column, :diagonal
+  attr_reader :grid, :row, :column, :diagonal, :mark, :game_state, :game_end
   
-  def initialize
-    @grid = Array[
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""]
-    ]
+  def initialize(grid = default_grid)
+    @grid = grid
+    @mark = mark
+    @game_state = game_state
   end
 
   def place_move(value, row, column)
@@ -20,10 +18,10 @@ class Board
   end
 
   # check row combinations
-  def check_combinations_in_row(grid_used=@grid)
+  def check_combinations_in_row
 
     @row = Array.new
-    grid_used.each do |i|
+    @grid.each do |i|
       temp = i.uniq
       if temp.length == 1 and temp.include?("X")
         @row.append("X wins")
@@ -39,13 +37,13 @@ class Board
   end
 
   # check column combinations 
-  def check_combinations_in_column(grid_used=@grid)
+  def check_combinations_in_column
     
     @column = Array.new
-    (0...grid_used.length()).each do |i|
+    (0...grid.length()).each do |i|
       temp = Array.new
-      (0...grid_used.length()).each do |y|
-        temp.append(grid_used[y][i])    
+      (0...grid.length()).each do |y|
+        temp.append(grid[y][i])    
       end
       temp=temp.uniq
       if temp.length == 1 and temp.include?("X")
@@ -61,7 +59,7 @@ class Board
     return @column
   end
 
-  def check_combinations_in_diagonals(grid_used=@grid)
+  def check_combinations_in_diagonals
     
     first_column = 0
     last_column = -1
@@ -69,14 +67,14 @@ class Board
     temp = Array.new 
     diagonal_forward = Array.new
     diagonal_reverse = Array.new
-    (0...grid_used.length()).each do |y|
+    (0...grid.length()).each do |y|
       
       # check forward
-      diagonal_forward.append(grid_used[y][first_column])
+      diagonal_forward.append(grid[y][first_column])
       first_column += 1
       
       # check in reverse
-      diagonal_reverse.append(grid_used[y][last_column])
+      diagonal_reverse.append(grid[y][last_column])
       last_column -= 1
     end
     temp.append(diagonal_forward.uniq,diagonal_reverse.uniq) 
@@ -94,7 +92,57 @@ class Board
     end
     @diagonal
   end
+  
+  def to_check_the_state_of_game(row = @row,column = @column,diagonal = @diagonal)
+    diagonal.append("nil")
+    if column.include?("X wins") or row.include?("X wins") or diagonal.include?("X wins")
+      # puts "\nX wins"
+      @game_state = "Done"
+      @game_end = "X wins"
+    elsif column.include?("O wins") or row.include?("O wins") or diagonal.include?("O wins")
+      # puts "\nO wins"
+      @game_state = "Done"
+      @game_end = "O wins"
+    elsif column.include?("Ongoing") or row.include?("Ongoing") or diagonal.include?("Ongoing")
+      @game_state = "Ongoing"
+    else
+      # puts "\nThe game is tied"
+      @game_state = "Done"
+      @game_end = "Tied"
+    end
+  end
 
+  def decide_player_turn
+    count = 0
+
+    @grid.each do |row|
+      row.each do |elements|
+        if elements != " "
+          count += 1
+        end
+      end
+    end
+
+    if count < 9
+      if count % 2 == 0 or count == 0
+        @mark = "X"
+        "X"
+      else
+        @mark = "O"
+        "O"
+      end
+    else 
+      "Done"
+    end
+  end
+
+  private
+
+  def default_grid
+    Array[
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""]
+    ]
+  end
 end
-
-

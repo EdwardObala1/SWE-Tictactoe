@@ -15,5 +15,11 @@ _______
 * Board class - returns valuues in grid and adds value to grid
 * Userinterface - Gets the user to be able to interact via interface
 
-to keep turns I would just use even number and such just compute plus one into the 
-turns and one group gets even number and the other one gets odd numbers
+what the game does
+-------------------
+So takes in user details the name and represents this as a symbol
+decides user turns
+the user input is taken (moves)
+the user input (moves)is added to the grid
+it assesses the move 
+if no one has won or it is not tied the game is kept as ongoing
