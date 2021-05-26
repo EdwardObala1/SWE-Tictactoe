@@ -11,36 +11,26 @@ RSpec.describe Board do
                              ])
   end
 
-  it 'marks a position on the grid' do
-    board = Board.new
-    expect(board.place_move('X', 2, 3)).to eq([
-                                                ['', '', ''],
-                                                ['', '', 'X'],
-                                                ['', '', '']
-                                              ])
-  end
-
-  it 'marks a position on the grid' do
-    board = Board.new
-    board.place_move('X', 2, 2)
-    board.place_move('O', 1, 2)
+  it 'marks a single position on the grid' do
+    board = Board.new(Array.new(9) { "" })
+    board.place_move_new('X', 1)
 
     expect(board.grid).to eq([
-                               ['', 'O', ''],
-                               ['', 'X', ''],
-                               ['', '', '']
-                             ])
+                              'X', '', '',
+                               '', '', '',
+                               '', '', ''
+                              ])
   end
 
-  it 'marks a position on the grid' do
-    board = Board.new
-    board.place_move('X', 1, 3)
-    board.place_move('O', 3, 3)
+  it 'marks mulitple positions on the grid' do
+    board = Board.new(Array.new(9) { "" })
+    board.place_move_new('X', 2)
+    board.place_move_new('O', 5)
 
     expect(board.grid).to eq([
-                               ['', '', 'X'],
-                               ['', '', ''],
-                               ['', '', 'O']
+                               '', 'X', '',
+                               '', 'O', '',
+                               '', '', ''
                              ])
   end
 

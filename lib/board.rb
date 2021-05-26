@@ -11,10 +11,22 @@ class Board
   def place_move(value, row, column)
     
     if value != 0 and row != 0 and column != 0
-      @grid[row-1][column-1] = value
+      if row <= @grid.length and column <= @grid.length
+        @grid[row-1][column-1] = value
+      else
+        puts "put in a value within the grid limits\n"
+      end
     end
-
+    puts ""
+    @grid.each do |row|
+      print row.to_s + "\n"
+    end
+    puts ""
     @grid
+  end
+
+  def place_move_new(value, position)
+    grid[position-1] = value
   end
 
   # check row combinations
@@ -117,7 +129,7 @@ class Board
 
     @grid.each do |row|
       row.each do |elements|
-        if elements != " "
+        if elements != ""
           count += 1
         end
       end
@@ -126,10 +138,10 @@ class Board
     if count < 9
       if count % 2 == 0 or count == 0
         @mark = "X"
-        "X"
+        @mark
       else
         @mark = "O"
-        "O"
+        @mark
       end
     else 
       "Done"
@@ -139,6 +151,7 @@ class Board
   private
 
   def default_grid
+
     Array[
       ["", "", ""],
       ["", "", ""],

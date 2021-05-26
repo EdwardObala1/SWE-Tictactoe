@@ -23,3 +23,6 @@ the user input is taken (moves)
 the user input (moves)is added to the grid
 it assesses the move 
 if no one has won or it is not tied the game is kept as ongoing
+
+
+**do not mix UI functionality with core functionality**

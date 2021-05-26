@@ -14,7 +14,7 @@ class UserInterface
   end
 
   def get_play_position
-    @output.puts "Put in your Row and Column"
+    @output.puts "Put in your Row and Column\n"
     @row = @input.gets.chomp.to_i
     @column = @input.gets.chomp.to_i
 
