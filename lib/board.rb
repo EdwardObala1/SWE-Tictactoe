@@ -1,5 +1,6 @@
 require 'set'
 class Board
+  GRID_DIMENSIONS = 3
   attr_reader :grid, :row, :column, :diagonal, :mark, :game_state, :game_end
   
   def initialize(grid = default_grid)
@@ -27,6 +28,21 @@ class Board
 
   def place_move_new(value, position)
     grid[position-1] = value
+  end
+
+  def rows
+    grid.each_slice(GRID_DIMENSIONS).to_a
+  end
+
+  def columns 
+    rows.transpose
+  end
+
+  def diagonals
+    diagonal_1 = rows.map.with_index {|item, index| item[index]}
+    diagonal_2 = rows.reverse.map.with_index {|item, index| item[index]}
+
+    [diagonal_1, diagonal_2]
   end
 
   # check row combinations

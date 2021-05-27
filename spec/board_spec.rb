@@ -34,114 +34,47 @@ RSpec.describe Board do
                              ])
   end
 
-  # check combination in Row
-  it 'Check the grid combinations within the game' do
+  it 'Returns each row from the board' do
     grid = [
+      '', '', 'X',
+      'X', '', '',
+      '', '', 'O'
+    ]
+    board = Board.new(grid)
+
+    expect(board.rows).to eq([
       ['', '', 'X'],
-      ['', '', ''],
-      ['', '', 'O']
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_row).to eq(%w[Ongoing Ongoing Ongoing])
+      ['X', '', ''],
+      ['', '', 'O'],
+    ])
   end
 
-  it 'Check the grid combinations within the game' do
+  it 'Return columns from the board' do
 
     grid = [
-      %w[X O X],
-      %w[X O X],
-      %w[O X O]
+      'X', 'O', 'X',
+      'X', 'O', 'O',
+      'X', 'X', 'O'
     ]
     board = Board.new(grid)
-    expect(board.check_combinations_in_row).to eq(%w[Tied Tied Tied])
+    expect(board.columns).to eq([
+      ['X', 'X', 'X'],
+      ['O', 'O', 'X'],
+      ['X', 'O', 'O'],
+    ])
   end
 
-  it 'Check the grid combinations within the game' do
+  it 'Returns diagonals from the board' do
     grid = [
-      %w[X X X],
-      %w[X O X],
-      %w[O X O]
+      'X', 'O', 'X',
+      'X', 'O', 'O',
+      'X', 'X', 'O'
     ]
     board = Board.new(grid)
-
-    expect(board.check_combinations_in_row).to eq(['X wins', 'Tied', 'Tied'])
-  end
-
-  it 'Check the grid combinations within the game' do
-    grid = [
-      %w[X O X],
-      %w[X O X],
-      %w[O O O]
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_row).to eq(['Tied', 'Tied', 'O wins'])
-  end
-
-  # check for combinations in columns
-
-  it 'Check the grid combinations within the game' do
-
-    grid = [
-      ['', '', 'X'],
-      ['', '', ''],
-      ['', '', 'O']
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_column).to eq(%w[Ongoing Ongoing Ongoing])
-  end
-
-  it 'Check the grid combinations within the game' do
-    grid = [
-      %w[X O X],
-      %w[X O X],
-      %w[O X O]
-    ]
-    board = Board.new(grid)
-
-    expect(board.check_combinations_in_column).to eq(%w[Tied Tied Tied])
-  end
-
-  it 'Check the grid combinations within the game' do
-    grid = [
-      %w[X X X],
-      %w[X O X],
-      %w[O X O]
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_column).to eq(%w[Tied Tied Tied])
-  end
-
-  it 'Check the grid combinations within the game' do
-    grid = [
-      %w[X O X],
-      %w[X O X],
-      %w[O O O]
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_column).to eq(['Tied', 'O wins', 'Tied'])
-  end
-
-  # check for combinations in diagonals
-
-  it 'Check the grid combinations within the game' do
-    grid = [
-      ['', '', 'X'],
-      ['', '', ''],
-      ['', '', 'O']
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_diagonals).to eq(%w[Ongoing Ongoing])
-  end
-
-  it 'Check the grid combinations within the game' do
-
-    grid = [
-      %w[X O O],
-      %w[X O X],
-      %w[O X O]
-    ]
-    board = Board.new(grid)
-    expect(board.check_combinations_in_diagonals).to eq(['Tied', 'O wins'])
+    expect(board.diagonals).to eq([
+      ['X', 'O', 'O'],
+      ['X', 'O', 'X'],
+    ])
   end
 
   # check for combinations in columns
