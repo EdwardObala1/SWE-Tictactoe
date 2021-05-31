@@ -26,3 +26,9 @@ if no one has won or it is not tied the game is kept as ongoing
 
 
 **do not mix UI functionality with core functionality**
+
+
+- true or false determines if the game is ongoing or not 
+
+ok a method that determines the game win and loss
+a method that determines player turns

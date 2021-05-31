@@ -5,9 +5,9 @@ RSpec.describe Board do
     board = Board.new
 
     expect(board.grid).to eq([
-                               ['', '', ''],
-                               ['', '', ''],
-                               ['', '', '']
+                               '', '', '',
+                               '', '', '',
+                               '', '', ''
                              ])
   end
 
@@ -77,81 +77,100 @@ RSpec.describe Board do
     ])
   end
 
-  # check for combinations in columns
+  context '#winner?' do 
+    it 'returns false when the game is ongoing' do
+      grid = [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+      ]
+      board = Board.new(grid)
+      expect(board.winner?).to eq(false)  
+    end
 
-  it 'Check the grid combinations within the game' do
+    it 'returns false when the game is tied' do
+      grid = [
+        'X', 'O', 'X',
+        'X', 'X', 'O',
+        'O', 'X', 'O'
+      ]
+      board = Board.new(grid)
+      expect(board.winner?).to eq(false)
+    end
 
+    it 'returns true when there is a winner in a row' do
+      grid = [
+        'X', 'X', 'X',
+        'O', 'X', 'O',
+        'O', 'X', 'O'
+      ]
+      board = Board.new(grid)
+      expect(board.winner?).to eq(true)
+    end
+
+    it 'returns true when there is a winner in a column' do
+      grid = [
+        'O', 'X', 'X',
+        'O', 'X', 'O',
+        'O', 'X', 'X'
+      ]
+      board = Board.new(grid)
+      expect(board.winner?).to eq(true)
+    end
+
+    it 'returns true when there is a winner in a diagonal' do
+      grid = [
+        'X', 'O', 'X',
+        'O', 'X', 'O',
+        'X', 'O', 'X'
+      ]
+      board = Board.new(grid)
+      expect(board.winner?).to eq(true)
+    end
+  end
+
+  context '#ongoing?' do
+    it 'returns true when the game is ongoing' do
+      grid = [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+      ]
+      board = Board.new(grid)
+      expect(board.ongoing?(board.rows)).to eq(true)  
+    end
+
+    it 'returns false when the game is tied' do
+      grid = [
+        'X', 'O', 'X',
+        'X', 'X', 'O',
+        'O', 'X', 'O'
+      ]
+      board = Board.new(grid)
+      expect(board.ongoing?(board.rows)).to eq(false)
+    end
+  end
+
+context 'player turns' do
+  it 'determines the player turns according to the grid' do
     grid = [
-      %w[X O X],
-      %w[O X O],
-      ['', 'O', 'X']
+      '', '', '',
+      '', '', '',
+      '', '', ''
     ]
     board = Board.new(grid)
-    expect(board.check_combinations_in_diagonals).to eq(['X wins', 'Ongoing'])
+    expect(board.get_player_turns).to eq("X")
   end
 
-  # check of the game is ongoing, won or tied
-  it "checks if the game is ongoing won or tied" do
-    board = Board.new
-    row = ["Ongoing","Ongoing","Ongoing"]
-    column = ["X wins","Ongoing","Ongoing"]
-    diagonal = ["Tied","Tied"]
-    expect(board.to_check_the_state_of_game(row,column,diagonal)).to eq("X wins")
-  end
-
-  it "checks if the game is ongoing won or tied" do
-    board = Board.new
-    row = ["Ongoing","Ongoing","Ongoing"]
-    column = ["O wins","Ongoing","Ongoing"]
-    diagonal = ["Tied","Tied"]
-    expect(board.to_check_the_state_of_game(row,column,diagonal)).to eq("O wins")
-  end
-
-  it "checks if the game is ongoing won or tied" do
-    board = Board.new
-    row = ["Ongoing","Ongoing","Ongoing"]
-    column = ["Tied","Ongoing","Ongoing"]
-    diagonal = ["Tied","Tied"]
-    expect(board.to_check_the_state_of_game(row,column,diagonal)).to eq("Ongoing")
-  end
-
-  it "checks if the game is ongoing won or tied" do
-    board = Board.new
-    row = ["Tied","Tied","Tied"]
-    column = ["Tied","Tied","Tied"]
-    diagonal = ["Tied","Tied"]
-    expect(board.to_check_the_state_of_game(row,column,diagonal)).to eq("Tied")
-  end
-
-  # decide which players turn it is 
-  it 'decides the player turns via grid count' do
+  it 'determines the player turns according to the grid' do
     grid = [
-      %w[X O  ],
-      %w[X O X],
-      %w[O X O]
+      'X', '', '',
+      '', '', '',
+      '', '', ''
     ]
     board = Board.new(grid)
-    expect(board.decide_player_turn).to eq("X")
+    expect(board.get_player_turns).to eq("O")
   end
-
-  it 'decides the player turns via grid count' do
-    grid = [
-      %w[X O  ],
-      %w[  O X],
-      %w[O X O]
-    ]
-    board = Board.new(grid)
-    expect(board.decide_player_turn).to eq("O")
-  end
-
-  it 'decides the player turns via grid count' do
-    grid = [
-      %w[X O X],
-      %w[X O X],
-      %w[O X O]
-    ]
-    board = Board.new(grid)
-    expect(board.decide_player_turn).to eq("Done")
-  end
+end
 
 end

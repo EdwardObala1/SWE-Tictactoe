@@ -2,7 +2,7 @@ require 'stringio'
 require_relative 'board'
 
 class UserInterface
-  attr_reader :row,:column
+  attr_reader :position
 
   def initialize(output, input)
     @output = output
@@ -14,10 +14,8 @@ class UserInterface
   end
 
   def get_play_position
-    @output.puts "Put in your Row and Column\n"
-    @row = @input.gets.chomp.to_i
-    @column = @input.gets.chomp.to_i
-
-    [@row, @column]
+    @output.puts "Put in the position you want play\n"
+    @position = @input.gets.chomp.to_i
+    @position
   end  
 end
