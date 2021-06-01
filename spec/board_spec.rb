@@ -129,27 +129,6 @@ RSpec.describe Board do
     end
   end
 
-  context '#ongoing?' do
-    it 'returns true when the game is ongoing' do
-      grid = [
-        '', '', '',
-        '', '', '',
-        '', '', ''
-      ]
-      board = Board.new(grid)
-      expect(board.ongoing?(board.rows)).to eq(true)  
-    end
-
-    it 'returns false when the game is tied' do
-      grid = [
-        'X', 'O', 'X',
-        'X', 'X', 'O',
-        'O', 'X', 'O'
-      ]
-      board = Board.new(grid)
-      expect(board.ongoing?(board.rows)).to eq(false)
-    end
-  end
 
 context 'player turns' do
   it 'determines the player turns according to the grid' do
@@ -159,7 +138,7 @@ context 'player turns' do
       '', '', ''
     ]
     board = Board.new(grid)
-    expect(board.get_player_turns).to eq("X")
+    expect(board.current_player).to eq("X")
   end
 
   it 'determines the player turns according to the grid' do
@@ -169,8 +148,39 @@ context 'player turns' do
       '', '', ''
     ]
     board = Board.new(grid)
-    expect(board.get_player_turns).to eq("O")
+    expect(board.current_player).to eq("O")
   end
 end
 
+context 'check if the game is tied' do
+  it 'determines if the game is tied or not' do
+    grid = [
+      'X', 'O', 'X',
+      'X', 'X', 'O',
+      'O', 'X', 'O'
+    ]
+    board = Board.new(grid)
+    expect(board.tied?).to eq(true)
+  end
+
+  it 'determines if the game is tied or not' do
+    grid = [
+      'X', '', '',
+      '', '', '',
+      '', '', ''
+    ]
+    board = Board.new(grid)
+    expect(board.tied?).to eq(false)
+  end
+
+  it 'determines if the game is tied or not' do
+    grid = [
+      'X', 'O', 'X',
+      'O', 'X', 'O',
+      'X', 'O', 'X'
+    ]
+    board = Board.new(grid)
+    expect(board.tied?).to eq(false)
+  end
+  end
 end
