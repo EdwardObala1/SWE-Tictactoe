@@ -13,7 +13,7 @@ RSpec.describe Board do
 
   it 'marks a single position on the grid' do
     board = Board.new(Array.new(9) { "" })
-    board.place_move_new('X', 1)
+    board.place_move('X', 1)
 
     expect(board.grid).to eq([
                               'X', '', '',
@@ -24,8 +24,8 @@ RSpec.describe Board do
 
   it 'marks mulitple positions on the grid' do
     board = Board.new(Array.new(9) { "" })
-    board.place_move_new('X', 2)
-    board.place_move_new('O', 5)
+    board.place_move('X', 2)
+    board.place_move('O', 5)
 
     expect(board.grid).to eq([
                                '', 'X', '',
@@ -34,47 +34,16 @@ RSpec.describe Board do
                              ])
   end
 
-  it 'Returns each row from the board' do
-    grid = [
-      '', '', 'X',
-      'X', '', '',
-      '', '', 'O'
-    ]
-    board = Board.new(grid)
+  it 'marks mulitple positions on the grid' do
+    board = Board.new(Array.new(9) { "" })
+    board.place_move('X', 2)
+    board.place_move('O', 2)
 
-    expect(board.rows).to eq([
-      ['', '', 'X'],
-      ['X', '', ''],
-      ['', '', 'O'],
-    ])
-  end
-
-  it 'Return columns from the board' do
-
-    grid = [
-      'X', 'O', 'X',
-      'X', 'O', 'O',
-      'X', 'X', 'O'
-    ]
-    board = Board.new(grid)
-    expect(board.columns).to eq([
-      ['X', 'X', 'X'],
-      ['O', 'O', 'X'],
-      ['X', 'O', 'O'],
-    ])
-  end
-
-  it 'Returns diagonals from the board' do
-    grid = [
-      'X', 'O', 'X',
-      'X', 'O', 'O',
-      'X', 'X', 'O'
-    ]
-    board = Board.new(grid)
-    expect(board.diagonals).to eq([
-      ['X', 'O', 'O'],
-      ['X', 'O', 'X'],
-    ])
+    expect(board.grid).to eq([
+                               '', 'X', '',
+                               '', '', '',
+                               '', '', ''
+                             ])
   end
 
   context '#winner?' do 
@@ -99,33 +68,74 @@ RSpec.describe Board do
     end
 
     it 'returns true when there is a winner in a row' do
-      grid = [
-        'X', 'X', 'X',
+      grid_1 = [
         'O', 'X', 'O',
-        'O', 'X', 'O'
+        'X', 'O', 'O',
+        'X', 'X', 'X'
       ]
-      board = Board.new(grid)
-      expect(board.winner?).to eq(true)
+
+      grid_2 = [
+        'O', 'X', 'O',
+        'X', 'X', 'X',
+        'X', 'O', 'O'
+      ]
+
+      grid_3 = [
+        'O', 'O', 'X',
+        'X', 'O', 'O',
+        'X', 'X', 'X'
+      ]
+      board_1 = Board.new(grid_1)
+      board_2 = Board.new(grid_2)
+      board_3 = Board.new(grid_3)
+      expect(board_1.winner?).to eq(true)
+      expect(board_2.winner?).to eq(true)
+      expect(board_3.winner?).to eq(true)
     end
 
     it 'returns true when there is a winner in a column' do
-      grid = [
-        'O', 'X', 'X',
+      grid_1 = [
         'O', 'X', 'O',
+        'O', 'X', 'O',
+        'X', 'X', 'X'
+      ]
+
+      grid_2 = [
+        'X', 'X', 'O',
+        'X', 'O', 'O',
+        'X', 'O', 'X'
+      ]
+
+      grid_3 = [
+        'O', 'X', 'X',
+        'O', 'O', 'X',
         'O', 'X', 'X'
       ]
-      board = Board.new(grid)
-      expect(board.winner?).to eq(true)
+      board_1 = Board.new(grid_1)
+      board_2 = Board.new(grid_2)
+      board_3 = Board.new(grid_3)
+      expect(board_1.winner?).to eq(true)
+      expect(board_2.winner?).to eq(true)
+      expect(board_3.winner?).to eq(true)
     end
 
     it 'returns true when there is a winner in a diagonal' do
-      grid = [
+      grid_1 = [
         'X', 'O', 'X',
         'O', 'X', 'O',
-        'X', 'O', 'X'
+        'O', 'X', 'X'
       ]
-      board = Board.new(grid)
-      expect(board.winner?).to eq(true)
+      grid_2 = [
+        'X', 'O', 'X',
+        'O', 'X', 'O',
+        'X', 'X', 'O'
+      ]
+
+      board_1 = Board.new(grid_1)
+      board_2 = Board.new(grid_2)
+
+      expect(board_1.winner?).to eq(true)
+      expect(board_2.winner?).to eq(true)
     end
   end
 

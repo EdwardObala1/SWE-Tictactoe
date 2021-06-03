@@ -32,3 +32,8 @@ if no one has won or it is not tied the game is kept as ongoing
 
 ok a method that determines the game win and loss
 a method that determines player turns
+
+rewrite the tests for winner to test all situations 
+move methods not used to be private methods
+
+heredocs
