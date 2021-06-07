@@ -36,6 +36,11 @@ class Board
     cell == ''
   end
 
+  def available_moves
+    @grid.map.with_index do |cell, index|
+      index + 1 if free?(cell)
+    end.compact
+  end
 
   private
 

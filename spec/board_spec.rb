@@ -193,4 +193,14 @@ context 'check if the game is tied' do
     expect(board.tied?).to eq(false)
   end
   end
+
+  it 'to get the free positions on a grid' do
+    grid = [
+      'X', 'O', 'X',
+      'O', 'X', 'O',
+      '', 'O', ''
+    ]
+    board = Board.new(grid)
+    expect(board.available_moves.sort).to eq([7, 9])
+  end
 end

@@ -12,9 +12,7 @@ class UserInterface
   def print_board(board)
     grid = board.grid.map.with_index { |cell, index| board.free?(cell) ? index + 1 : cell }
     rows = grid.each_slice(Board::GRID_DIMENSIONS).to_a
-    formatted_board = rows.map do |row|
-      row.join(' , ')
-    end
+    formatted_board = rows.map { |row| row.join(' , ') }
 
     @output.puts formatted_board
   end
