@@ -31,4 +31,5 @@ class UserInterface
     @position = @input.gets.chomp.to_i
     @position
   end
+
 end

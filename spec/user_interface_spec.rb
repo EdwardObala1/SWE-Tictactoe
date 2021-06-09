@@ -49,4 +49,8 @@ X , 8 , 9
 BOARD
 )
   end
+
+  it 'checks for printout int the conslusion' do
+    # yet to test
+  end
 end
