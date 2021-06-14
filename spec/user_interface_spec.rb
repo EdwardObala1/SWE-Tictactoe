@@ -50,7 +50,22 @@ BOARD
 )
   end
 
-  it 'checks for printout int the conslusion' do
-    # yet to test
+  it 'checks for player options' do
+    output = StringIO.new
+    input = StringIO.new ("1/n")
+    ui = UserInterface.new(output, input)
+    expect(ui.play_vs_human?).to eq(true)
+  end
+
+  it 'checks for the conclusion output when the game is tied' do
+    board = Board.new([
+      'X', 'O', 'X',
+      'X', 'X', 'O',
+      'O', 'X', 'O'
+    ])
+    output = StringIO.new
+    ui = UserInterface.new(output, StringIO.new)
+    ui.conclusion(board)
+    expect(output.string).to eq("Game is tied\n")
   end
 end

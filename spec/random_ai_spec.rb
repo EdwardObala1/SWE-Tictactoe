@@ -1,4 +1,4 @@
-require 'ai'
+require 'random_ai'
 
 RSpec.describe RandomAI do
   # it provides a random move
@@ -15,20 +15,9 @@ RSpec.describe RandomAI do
                           'O', 'X', 'O',
                           '', 'X', ''
                         ])
-      randomAI = RandomAI.new(board)
+      randomAI = RandomAI.new
 
-      expect(randomAI.get_move).to eq(7).or(eq(9))
-    end
-
-    it 'plays the next position' do
-      board = Board.new([
-                          '', 'O', 'X',
-                          'O', '', 'O',
-                          'X', 'X', 'O'
-                        ])
-      randomAI = RandomAI.new(board)
-      randomAI.ai_move(randomAI.get_move)
-      expect(randomAI.get_move).to eq(1).or(eq(5))
+      expect(randomAI.get_move(board)).to eq(7).or(eq(9))
     end
   end
 end

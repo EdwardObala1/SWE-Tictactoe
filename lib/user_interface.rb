@@ -32,4 +32,18 @@ class UserInterface
     @position
   end
 
+  def play_vs_human?
+    @output.puts "Who do you want to play 1. Another Human or 2. AI"
+    @input.gets.to_i == 1
+  end
+
+  # change this move some factors to ui
+  def conclusion(board)
+    if board.winner?
+      @output.puts "#{board.current_player} wins"
+      # print_board(board)
+    elsif board.tied?
+      @output.puts 'Game is tied'
+    end
+  end
 end
