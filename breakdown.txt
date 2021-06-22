@@ -37,3 +37,20 @@ rewrite the tests for winner to test all situations
 move methods not used to be private methods
 
 heredocs
+
+
+Things to address
+
+Flow of human_vs_RandomAI
+
+
+build hypothesis foe every specific moment in time
+using pry to see each part of test at time
+check out flow of process and test
+
+
+for the minimax the algorithm goes like this
+__________
+IT CHECKS WHO IS THE PLAYER
+Gets the value then plays a random move to check if it is a winning combinations
+the value with the highest score and least plays is returned as the best play

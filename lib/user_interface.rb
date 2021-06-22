@@ -4,6 +4,8 @@ require_relative 'board'
 class UserInterface
   attr_reader :position
 
+  BOARD_SPLITTER = "......................."
+
   def initialize(output, input)
     @output = output
     @input = input
@@ -14,7 +16,8 @@ class UserInterface
     rows = grid.each_slice(Board::GRID_DIMENSIONS).to_a
     formatted_board = rows.map { |row| row.join(' , ') }
 
-    @output.puts formatted_board
+    @output.puts formatted_board 
+    @output.puts BOARD_SPLITTER
   end
 
   def opponent_options
@@ -37,10 +40,10 @@ class UserInterface
     @input.gets.to_i == 1
   end
 
-  # change this move some factors to ui
+  
   def conclusion(board)
     if board.winner?
-      @output.puts "#{board.current_player} wins"
+      @output.puts "#{board.opponent(board.current_player)} wins"
       # print_board(board)
     elsif board.tied?
       @output.puts 'Game is tied'

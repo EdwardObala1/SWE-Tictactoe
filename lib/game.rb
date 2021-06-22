@@ -3,14 +3,14 @@ require_relative 'user_interface'
 require_relative 'random_ai'
 
 class Game
-  def initialize(board = Board.new, ui = UserInterface.new($stdout, $stdin), ai = RandomAI.new)
+  def initialize(board, ui, ai = RandomAI.new)
     @board = board
     @ui = ui
     @ai = ai
   end
 
   def play
-    if @ui.play_vs_human?
+    if @ui.play_vs_human? 
       until over?
         human_vs_human
       end
@@ -36,10 +36,14 @@ class Game
   end
 
   def human_vs_random_ai
-    @ui.prompt_next_player(@board.current_player)
-    @ui.get_play_position
-    @board.current_player == "X" ? @board.place_move(@board.current_player, @ui.position) : @board.place_move(@board.current_player, @ai.get_move(@board))
+    if @board.current_player == 'X'
+      @ui.prompt_next_player(@board.current_player)
+      @ui.get_play_position
+      @board.place_move(@board.current_player, @ui.position)
+    else
+      # available_moves -> [9] ??
+      @board.place_move(@board.current_player, @ai.get_move(@board))
+    end
     @ui.print_board(@board)
   end
-
 end

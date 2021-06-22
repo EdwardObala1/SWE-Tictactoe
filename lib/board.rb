@@ -32,6 +32,10 @@ class Board
     grid.each_slice(GRID_DIMENSIONS).to_a
   end
 
+  def opponent(mark)
+    mark == "X" ? "O" : "X"
+  end
+
   def free?(cell)
     cell == ''
   end

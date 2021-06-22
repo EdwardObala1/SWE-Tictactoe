@@ -19,5 +19,16 @@ RSpec.describe RandomAI do
 
       expect(randomAI.get_move(board)).to eq(7).or(eq(9))
     end
+
+    it 'picks a random position to play in grid' do
+      board = Board.new([
+                          'X', 'O', 'X',
+                          'O', 'X', 'O',
+                          'X', 'X', ''
+                        ])
+      randomAI = RandomAI.new
+
+      expect(randomAI.get_move(board)).to eq(9)
+    end
   end
 end

@@ -46,6 +46,7 @@ RSpec.describe UserInterface do
 X , 2 , 3
 X , 5 , 6
 X , 8 , 9
+#{UserInterface::BOARD_SPLITTER}
 BOARD
 )
   end
@@ -55,6 +56,18 @@ BOARD
     input = StringIO.new ("1/n")
     ui = UserInterface.new(output, input)
     expect(ui.play_vs_human?).to eq(true)
+  end
+
+  it 'checks for the conclusion when X wins' do
+    board = Board.new([
+      'X', 'X', 'O',
+      'X', 'O', 'O',
+      'O', 'X', ''
+    ])
+    output = StringIO.new
+    ui = UserInterface.new(output, StringIO.new)
+    ui.conclusion(board)
+    expect(output.string).to eq("O wins\n")
   end
 
   it 'checks for the conclusion output when the game is tied' do

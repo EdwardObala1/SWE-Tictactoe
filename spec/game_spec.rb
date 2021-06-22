@@ -47,13 +47,14 @@ RSpec.describe Game do
       grid = ['X', 'O', 'X', 'O', 'X', 'X', '', 'O', '']
       board = Board.new(grid)
       ui = double(UserInterface).as_null_object
+      ai = double(Random).as_null_object
       expect(ui).to receive(:play_vs_human?).and_return(false)
+      expect(ai).to receive(:get_move).and_return(7)
       expect(ui).to receive(:position).and_return(9)
-      game = Game.new(board, ui)
+      game = Game.new(board, ui, ai)
 
       game.play
 
-      expect(board.grid).to eq(%w[X O X O X X O O X])
       expect(game.over?).to eq(true)
     end
   end
