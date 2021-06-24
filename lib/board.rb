@@ -20,6 +20,11 @@ class Board
     end
   end
 
+  def reset_board(position)
+    grid[position - 1] = ''
+    grid
+  end
+
   def tied?
     !winner? && !grid.include?('')
   end
@@ -38,6 +43,14 @@ class Board
 
   def free?(cell)
     cell == ''
+  end
+
+  def win_for(mark)
+    winning_combinations.any? { |combo| combo.all? { |cell| cell == mark } }
+  end
+
+  def winning_combinations
+    rows + columns + diagonals
   end
 
   def available_moves

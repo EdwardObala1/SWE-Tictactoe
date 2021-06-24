@@ -203,4 +203,18 @@ context 'check if the game is tied' do
     board = Board.new(grid)
     expect(board.available_moves.sort).to eq([7, 9])
   end
+
+  it 'check if reset board works' do
+    grid = [
+      'X', 'O', 'X',
+      'X', 'X', 'O',
+      'O', 'X', 'O'
+    ]
+    board = Board.new(grid)
+    expect(board.reset_board(7)).to eq([
+      'X', 'O', 'X',
+      'X', 'X', 'O',
+      '', 'X', 'O'
+    ])
+  end
 end
