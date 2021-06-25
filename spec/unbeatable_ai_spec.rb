@@ -15,7 +15,7 @@ RSpec.describe UnbeatableAI do
     expect(unbeatable.get_move(board)).to eq(9)
   end
 
-  xit 'goes for the win' do
+  it 'goes for the win' do
     board = Board.new([
       'X', 'X', 'O',
       'X', 'O', 'X',
