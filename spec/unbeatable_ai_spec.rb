@@ -26,7 +26,40 @@ RSpec.describe UnbeatableAI do
     expect(unbeatable.get_move(board)).to eq(7)
   end
 
-  xit 'prevents a loss' do
+  it 'prevents a diagonal fork trap' do
+    board = Board.new([
+      'O', '', '',
+      '', 'X', '',
+      '', '', 'X'
+    ])
+    unbeatable = UnbeatableAI.new
+
+    expect(unbeatable.get_move(board)).to eq(3)
+  end
+
+  it 'prevents an edge trap' do
+    board = Board.new([
+      '', 'X', '',
+      'X', 'O', '',
+      '', '', ''
+    ])
+    unbeatable = UnbeatableAI.new
+
+    expect(unbeatable.get_move(board)).to eq(1)
+  end
+
+  it 'prevents a reverse edge trap' do
+    board = Board.new([
+      '', '', '',
+      '', 'O', 'X',
+      '', 'X', ''
+    ])
+    unbeatable = UnbeatableAI.new
+
+    expect(unbeatable.get_move(board)).to eq(3)
+  end
+
+  it 'prevents a loss' do
     board = Board.new([
       'X', 'X', 'O',
       '', 'O', 'X',
@@ -37,7 +70,7 @@ RSpec.describe UnbeatableAI do
     expect(unbeatable.get_move(board)).to eq(4)
   end
 
-  xit 'prevents a loss' do
+  it 'prevents a loss' do
     board = Board.new([
       '', 'X', 'O',
       '', 'X', '',
@@ -45,6 +78,17 @@ RSpec.describe UnbeatableAI do
     ])
     unbeatable = UnbeatableAI.new
 
+    expect(unbeatable.get_move(board)).to eq(8)
+  end
+
+  it 'gets a win with x' do
+    board = Board.new([
+      '', 'X', 'O',
+      '', 'X', 'O',
+      '', '', ''
+    ])
+    unbeatable = UnbeatableAI.new
+   
     expect(unbeatable.get_move(board)).to eq(8)
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe UserInterface do
 
     player_opponent = ui.opponent_options
 
-    expect(output.string).to eq("Do you want to play a 1.human or 2.Computer Opponent\n")
+    expect(output.string).to eq("Do you want to play a 1.human or 2.Easy computer Opponent 3. Hard computer Opponent\n")
     expect(player_opponent).to eq(2)
   end
 

@@ -21,8 +21,9 @@ class UserInterface
   end
 
   def opponent_options
-    @output.puts 'Do you want to play a 1.human or 2.Computer Opponent'
-    @response = @input.gets.chomp.to_i
+    @output.puts 'Do you want to play a 1.human or 2.Easy computer Opponent 3. Hard computer Opponent'
+    response = @input.gets.chomp.to_i
+    response
   end
 
   def prompt_next_player(mark)
