@@ -12,15 +12,16 @@ class Game
   end
 
   def play
-    if @ui.opponent_options == 1
+    game_option = @ui.opponent_options
+    if game_option == 1
       until over?
         human_vs_human
       end
-    elsif @ui.opponent_options == 2
+    elsif game_option == 2
       until over?
         human_vs_random_ai
       end
-    elsif @ui.opponent_options ==3
+    elsif game_option == 3
       until over?
         # build method for unbeatable ai
         human_vs_unbeatable_ai
