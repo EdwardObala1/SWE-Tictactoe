@@ -28,6 +28,17 @@ RSpec.describe UnbeatableAI do
 
   it 'prevents a diagonal fork trap' do
     board = Board.new([
+      'X', '', '',
+      '', 'O', '',
+      '', '', 'X'
+    ])
+    unbeatable = UnbeatableAI.new
+
+    expect(unbeatable.get_move(board)).to eq(2)
+  end
+
+  it 'prevents a alternative diagonal fork trap' do
+    board = Board.new([
       'O', '', '',
       '', 'X', '',
       '', '', 'X'
