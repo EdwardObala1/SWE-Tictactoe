@@ -1,4 +1,4 @@
-require 'random_ai'
+require 'core_files/random_ai'
 
 RSpec.describe RandomAI do
   # it provides a random move

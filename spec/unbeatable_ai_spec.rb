@@ -1,5 +1,5 @@
-require 'unbeatable_ai'
-require 'board'
+require 'core_files/unbeatable_ai'
+require 'core_files/board'
 
 RSpec.describe UnbeatableAI do
   context 'Unbeatable AI player' do

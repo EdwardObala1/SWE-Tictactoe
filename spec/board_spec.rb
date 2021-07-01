@@ -1,4 +1,4 @@
-require 'board'
+require 'core_files/board'
 
 RSpec.describe Board do
   it 'starts with an empty grid' do

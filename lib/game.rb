@@ -1,13 +1,13 @@
-require_relative 'board'
+require_relative 'core_files/board'
 require_relative 'user_interface'
-require_relative 'random_ai'
-require_relative 'unbeatable_ai'
+require_relative 'core_files/random_ai'
+require_relative 'core_files/unbeatable_ai'
 
 class Game
-  def initialize(board, ui, ai = RandomAI.new, unbeatable = UnbeatableAI.new)
+  def initialize(board, ui, randomai = RandomAI.new, unbeatable = UnbeatableAI.new)
     @board = board
     @ui = ui
-    @ai = ai
+    @randomai = randomai
     @unbeatable = unbeatable
   end
 
@@ -15,16 +15,18 @@ class Game
     game_option = @ui.opponent_options
     if game_option == 1
       until over?
-        human_vs_human
+        human_move
+        @ui.print_board(@board)
       end
     elsif game_option == 2
       until over?
-        human_vs_random_ai
+        human_vs_ai(@randomai)
+        @ui.print_board(@board)
       end
     elsif game_option == 3
       until over?
-        # build method for unbeatable ai
-        human_vs_unbeatable_ai
+        human_vs_ai(@unbeatable)
+        @ui.print_board(@board)
       end
     end
     @ui.conclusion(@board)
@@ -36,34 +38,17 @@ class Game
   
   private 
 
-  def human_vs_human
+  def human_move
     @ui.prompt_next_player(@board.current_player)
     @ui.get_play_position
     @board.place_move(@board.current_player, @ui.position)
-    @ui.print_board(@board)
   end
 
-  def human_vs_random_ai
+  def human_vs_ai(ai)
     if @board.current_player == 'X'
-      @ui.prompt_next_player(@board.current_player)
-      @ui.get_play_position
-      @board.place_move(@board.current_player, @ui.position)
+      human_move
     else
-      # available_moves -> [9] ??
-      @board.place_move(@board.current_player, @ai.get_move(@board))
+      @board.place_move(@board.current_player, ai.get_move(@board))
     end
-    @ui.print_board(@board)
-  end
-
-  def human_vs_unbeatable_ai
-    if @board.current_player == 'X'
-      @ui.prompt_next_player(@board.current_player)
-      @ui.get_play_position
-      @board.place_move(@board.current_player, @ui.position)
-    else
-      # available_moves -> [9] ??
-      @board.place_move(@board.current_player, @unbeatable.get_move(@board))
-    end
-    @ui.print_board(@board)
   end
 end

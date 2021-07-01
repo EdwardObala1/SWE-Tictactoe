@@ -50,7 +50,7 @@ RSpec.describe Game do
       board = Board.new(grid)
       ui = double(UserInterface).as_null_object
       ai = double(Random).as_null_object
-      expect(ui).to receive(:opponent_options).and_return(2, 2)
+      expect(ui).to receive(:opponent_options).and_return(2)
       expect(ai).to receive(:get_move).and_return(7)
       expect(ui).to receive(:position).and_return(9)
       game = Game.new(board, ui, ai)
@@ -61,24 +61,4 @@ RSpec.describe Game do
     end
   end
 
-  context 'human vs unbeatable ai' do
-    xit 'plays a game until is over' do
-      grid = ['X', 'X', 'O', 
-              'O', 'X', 'X', 
-              '', 'O', '']
-      board = Board.new(grid)
-      ui = double(UserInterface).as_null_object
-      ai = double(Random).as_null_object
-      unbeatable = UnbeatableAI.new
-      expect(ui).to receive(:opponent_options).and_return(3)
-      # expect(ai).to receive(:get_move).and_return(7)
-
-      # expect(ui).to receive(:position).and_return(7)
-      game = Game.new(board, ui, ai)
-
-      game.play
-
-      expect(game.over?).to eq(true)
-    end
-  end
 end

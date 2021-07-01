@@ -1,5 +1,5 @@
 require 'stringio'
-require_relative 'board'
+require_relative 'core_files/board'
 
 class UserInterface
   attr_reader :position
