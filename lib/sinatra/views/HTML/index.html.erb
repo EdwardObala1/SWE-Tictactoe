@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+
+</head>
+
+<body style="background-color: black;">
+    <center>
+<h1 style='font-family:Inconsolata; color: green;'>TIC TAC TOE</h1>
+    </center>
+
+    
+<div id = 'description' class = 'center' style = 'color:green; border-style: solid; border-radius: 10px ; border-color:green; height: 200 px; width: 500px; text-align:center; margin:auto;'> 
+    <p style="padding: auto; padding-left: 10 px; font-family: Inconsolata;">This is a tictactoe game with various play modes as features, 
+</br>You can play against a Random computer player, another person or an Intelligent computer player</p>
+</div>
+
+
+<div id = 'player_options' class = 'row' style="margin: auto; margin-top: 50px; border-style: solid; border-color: green; border-radius: 10px; height: 5%; width: 20% ; align-items: center; justify-content: center; display: flex;">   
+    <div class = "row"><p style="color: green; font-family: Inconsolata;">Who do you want to play?</p></div>
+</div>
+
+<div id = 'random_button' class = 'row' style="margin: auto; margin-top: 50px; border-style: solid; border-color: green; border-radius: 10px; height: 5%; width: 20% ; align-items: center; justify-content: center; display: flex;">
+<button method = "POST" action = "/playrandomai" style="width:250px; height:30px; padding: auto; color: green; background-color: black; font-family: Inconsolata; font-size: medium;">Random computer player</button></br>
+</div>
+
+<div id = 'human_player_button' class = 'row' style="margin: auto; margin-top: 50px; border-style: solid; border-color: green; border-radius: 10px; height: 5%; width: 20% ; align-items: center; justify-content: center; display: flex;">
+<button method = "POST" action = "/playhuman" style="width:250px; height:30px; padding: auto; color: green; background-color: black; font-family: Inconsolata; font-size: medium;">Human player</button></br>
+</div>
+
+<div id = 'intelligent_ai_player' class = 'row' style="margin: auto; margin-top: 50px; border-style: solid; border-color: green; border-radius: 10px; height: 5%; width: 20% ; align-items: center; justify-content: center; display: flex;">
+<button method = "POST" action = "/playsmartai" style="width:250px; height:30px; padding: auto; color: green; background-color: black; font-family: Inconsolata; font-size: medium;">Intelligent computer player</button></br>
+</div>
+
+
+</body>
+
+</html>

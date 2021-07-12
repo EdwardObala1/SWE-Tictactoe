@@ -1,4 +1,4 @@
-require 'core_files/game'
+require 'terminal_views/game_terminal'
 
 RSpec.describe Game do
   context 'human vs human' do

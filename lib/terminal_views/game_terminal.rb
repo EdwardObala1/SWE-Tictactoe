@@ -1,7 +1,7 @@
-require_relative 'board'
-require_relative '../user_interface'
-require_relative 'random_ai'
-require_relative 'unbeatable_ai'
+require_relative '../core_files/board'
+require_relative 'user_interface'
+require_relative '../core_files/random_ai'
+require_relative '../core_files/unbeatable_ai'
 
 class Game
   def initialize(board, ui, randomai = RandomAI.new, unbeatable = UnbeatableAI.new)

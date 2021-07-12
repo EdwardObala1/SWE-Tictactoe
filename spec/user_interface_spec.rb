@@ -1,4 +1,4 @@
-require 'user_interface'
+require 'terminal_views/user_interface'
 require 'stringio'
 
 RSpec.describe UserInterface do

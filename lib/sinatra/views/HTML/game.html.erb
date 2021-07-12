@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+
+    
+
+    <script>
+
+        console.log('HELLO WRLD')
+    </script>
+    <style>
+        .box {
+                border: 6px solid green;
+                border-radius: 2px;
+                font-family: Inconsolata;
+                font-weight: bold;
+                font-size: 4em;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+    </style>
+</head>
+
+<body style="background-color: black;">
+        <center>
+    <h1 style='font-family:Inconsolata; color: green;'>TIC TAC TOE</h1>
+        </center>
+
+        
+    <div id = 'description' class = 'center' style = 'color:green; border-style: solid; border-radius: 10px ; border-color:green; height: 200 px; width: 500px; text-align:center; margin:auto;'> 
+        <p style="padding: auto; padding-left: 10 px; font-family: Inconsolata;">This is a tictactoe game with various play modes as features, 
+    </br>You can play against a Random computer player, another person or an Intelligent computer player</p>
+    </div>
+
+
+    <div id = 'player_options' class = 'row' style="margin: auto; margin-top: 50px; margin-bottom: 50px; border-style: solid; border-color: green; border-radius: 10px; height: 5%; width: 20% ; align-items: center; justify-content: center; display: flex;">   
+        <div class = "row"><p style="color: green; font-family: Inconsolata;">Game</p></div>
+    </div>
+
+    <div class="game-board" style = "width: 600px;
+	height: 600px;
+	margin: 0 auto;
+    background-color: black;
+    color: #fff;
+    border: 6px solid green; 
+    border-radius: 10px;
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);">
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+        <div onclick = " " class="box" style="cursor: crosshair;"> _ </div>
+    </div>
+
+</body>
+
+</html>
